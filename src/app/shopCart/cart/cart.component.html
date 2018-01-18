@@ -1,0 +1,11 @@
+<div *ngIf="cartItems && cartItems.length > 0">
+  <h3>Shop cart</h3>
+<ol>
+  <li *ngFor="let item of cartItems">
+      <span>{{item.product.name}}</span>
+      <span>{{item.quantity}} pcs x ${{item.product.price}}</span>
+      
+    
+  </li>
+</ol>
+</div>
