@@ -17,4 +17,8 @@ export class CartService {
   getProducts(): Array<CartItem> {
     return this.cartItems;
   }
+
+  getProductsCount(): number {
+    return this.cartItems.length;
+  }
 }
