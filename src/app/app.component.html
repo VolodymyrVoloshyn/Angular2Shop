@@ -14,6 +14,5 @@
     <button type="button" (click)='onBuy()'>Buy</button>
   </div>
 
-  <!-- <app-cart *ngIf="cartItemsCount > 0"></app-cart>  - doesn't work  -->
-  <app-cart *ngIf="cartItems.length > 0"></app-cart>
+  <app-cart *ngIf="getCartItemsCount() > 0"></app-cart>
 </div>

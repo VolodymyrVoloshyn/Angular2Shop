@@ -13,8 +13,6 @@ export class AppComponent implements OnInit {
   title = 'Burger Shop';
   selectedProduct: Product;
   quantity: number;
-  cartItemsCount: number;
-  cartItems: Array<CartItem>;
 
   constructor(private cartService: CartService) { }
 
@@ -29,8 +27,9 @@ export class AppComponent implements OnInit {
       id: 101, name: 'Humburger', description: 'Humburger description', price: 1.2, category: ProductCategory.Burger, isAvailable: true,
       ingredients: ['Hum', 'bread', 'ketchup']
     };
+  }
 
-    this.cartItems = this.cartService.getProducts();
-    this.cartItemsCount = this.cartService.getProductsCount();
+  getCartItemsCount(): number {
+    return this.cartService.getProductsCount();
   }
 }
