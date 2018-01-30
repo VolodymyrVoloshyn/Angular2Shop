@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from './cart.service';
-import { CartItemListComponent } from './cart-item-list/cart-item-list.component';
+import { CartItemListComponent } from './cart-item-list/cart-item-list.component'; 
 
 @NgModule({
   imports: [

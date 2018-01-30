@@ -7,11 +7,10 @@ import { AppComponent } from './app.component';
 // import { CartComponent } from './Cart/cart/cart.component';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
-// import { CartItemListComponent } from './cart-item-list/cart-item-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   //  CartComponent,
    // CartItemListComponent
     ],
