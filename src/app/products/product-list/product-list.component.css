@@ -1,0 +1,14 @@
+.plMB{
+    margin-right: 50px;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.plItem{
+    margin-bottom: 20px;
+}
+
+.plItemName{
+    font-weight: bold;
+}
