@@ -3,11 +3,11 @@ import { CartService } from '../cart.service';
 import { CartItem } from '../cart-item';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-cart-item-list',
+  templateUrl: './cart-item-list.component.html',
+  styleUrls: ['./cart-item-list.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartItemListComponent implements OnInit {
   cartItems: Array<CartItem>;
 
   constructor(private cartService: CartService) { }

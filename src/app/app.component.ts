@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './products/product';
 import { ProductCategory } from './products/product-category.enum';
-import { CartService } from './shopCart/cart.service';
-import { CartItem } from './shopCart/cart-item';
+import { CartService } from './cart/cart.service';
+import { CartItem } from './cart/cart-item';
 
 @Component({
   selector: 'app-root',
