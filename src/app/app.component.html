@@ -7,11 +7,6 @@
 
 <div style="vertical-align: top;">
   <app-products-main></app-products-main>
-  <div>
-    Quantity:
-    <input type="number" [(ngModel)]="quantity" />
-    <button type="button" (click)='onBuy()'>Buy</button>
-  </div>
-
-  <app-cart-item-list *ngIf="getCartItemsCount() > 0"></app-cart-item-list>
+  <app-cart *ngIf="getCartItemsCount() > 0"></app-cart>
+  
 </div>

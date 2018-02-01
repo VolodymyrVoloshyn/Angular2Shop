@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ProductCategory } from '../product-category.enum';
-import { Product } from '../product';
+import { IProduct } from '../iproduct';
 
 @Component({
   selector: 'app-product',
@@ -8,51 +8,62 @@ import { Product } from '../product';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  @Input() product: Product;
+  @Output() add = new EventEmitter();
+  private _product: IProduct;
+
+  @ViewChild('productQnt')
+  productQnt: ElementRef;
+
+  @Input() set product(product: IProduct) {
+    this._product = product;
+
+    this.productQnt.nativeElement.value = 1; // reset to default
+  }
+  get product(): IProduct{
+    return this._product;
+  }
 
   get productName(): string {
-    return this.product ? this.product.name : null;
+    return this._product ? this._product.name : null;
   }
 
   get productDescription(): string {
-    return this.product ? this.product.description : null;
+    return this._product ? this._product.description : null;
   }
 
   get productPrice(): number {
-    return this.product ? this.product.price : null;
+    return this._product ? this._product.price : null;
   }
 
   get productCategory(): ProductCategory {
-    return this.product ? this.product.category : null;
+    return this._product ? this._product.category : null;
   }
 
   get isAvailable(): boolean {
-    return this.product ? this.product.isAvailable : null;
+    return this._product ? this._product.isAvailable : null;
   }
 
   get ingredients(): string[] {
-    return this.product ? this.product.ingredients : null;
+    return this._product ? this._product.ingredients : null;
   }
-
-  /*
-id: number;
-    name: string;
-    description: string;
-    price: number;
-    category: ProductCategory;
-    isAvailable: boolean;
-    ingredients: string[];
-  */
 
   constructor() { }
 
   ngOnInit() {
-    // this.productName = 'Humburger';
-    // this.productDescription = 'Big Burger';
-    // this.productPrice = 1.5;
-    // this.productCategory = ProductCategory.Burger;
-    // this.isAvailable = true;
-    // this.ingredients = ['Hum', 'Bread', 'Ketchup'];
   }
 
+  onAdd(): void {
+    if (!this._product) {
+      // error?
+      console.log('Product is not selected');
+    }
+
+    if (this.productQnt.nativeElement.value < 1) {
+      // error?
+      console.log('Quantity is incorrect.');
+      return;
+    }
+
+    this.add.emit({ quantity: this.productQnt.nativeElement.value, product: this._product });
+  }
 }

@@ -9,6 +9,7 @@ import { CartItem } from '../cart-item';
 })
 export class CartItemListComponent implements OnInit {
   cartItems: Array<CartItem>;
+  selectedCartItem: CartItem;
 
   constructor(private cartService: CartService) { }
 
@@ -16,4 +17,7 @@ export class CartItemListComponent implements OnInit {
     this.cartItems = this.cartService.getProducts();
   }
 
+  onSelect(item: CartItem): void {
+    this.selectedCartItem = item;
+  }
 }

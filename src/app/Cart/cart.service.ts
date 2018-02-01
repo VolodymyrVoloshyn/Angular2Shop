@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../products/product';
+import { IProduct } from '../products/iproduct';
 import { CartItem } from './cart-item';
 
 @Injectable()
@@ -10,11 +10,19 @@ export class CartService {
     this.cartItems = new Array<CartItem>();
   }
 
-  addProduct(product: Product, quantity: number): void {
+  addProduct(product: IProduct, quantity: number): void {
     this.cartItems.push(new CartItem(product, quantity));
   }
 
-  getProducts(): Array<CartItem> {
+  removeProduct(cartItem: CartItem): void {
+    let index = this.cartItems.indexOf(cartItem);
+
+    if (index > -1) {
+      this.cartItems.splice(index, 1);
+    }
+  }
+
+  getProducts(): Array<CartItem> { 
     return this.cartItems;
   }
 
