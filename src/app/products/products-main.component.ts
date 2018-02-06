@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IProduct } from './iproduct';
+import { IProduct } from './model/iproduct';
 import { ProductComponent } from './product/product.component';
 import { CartService } from '../cart/cart.service';
 
@@ -9,23 +9,20 @@ import { CartService } from '../cart/cart.service';
 })
 
 export class ProductsMainComponent implements OnInit {
-  @ViewChild('productDetail')
-  productDetail: ProductComponent;
-  showProductDetatil: Boolean; // = false;
+  showProductDetatil: Boolean;
+  selectedProduct: IProduct;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    // this.showProductDetatil= false;
   }
 
   onSelect(product: IProduct): void {
     this.showProductDetatil = true;
-    this.productDetail.product = product;
+    this.selectedProduct = product;
   }
 
   onProductAdd($event) {
-    // console.log($event.quantity);
     this.cartService.addProduct($event.product, $event.quantity);
   }
 }

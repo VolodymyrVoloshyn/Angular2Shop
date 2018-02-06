@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from '../products/iproduct';
+import { IProduct } from '../products/model/iproduct';
 import { CartItem } from './cart-item';
 
 @Injectable()
@@ -22,11 +22,21 @@ export class CartService {
     }
   }
 
-  getProducts(): Array<CartItem> { 
+  getProducts(): Array<CartItem> {
     return this.cartItems;
   }
 
   getProductsCount(): number {
     return this.cartItems.length;
+  }
+
+  getTotal(): number {
+    let total = 0;
+    for (let item of this.cartItems) {
+
+      total += item.quantity * item.product.price;
+    }
+
+    return total;
   }
 }

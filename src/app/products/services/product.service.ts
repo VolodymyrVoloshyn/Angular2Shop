@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from './iproduct';
-import { ProductCategory } from './product-category.enum';
+import { IProduct } from '../model/iproduct';
+import { ProductCategory } from '../model/product-category.enum';
 
 @Injectable()
 export class ProductService {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { ProductCategory } from '../product-category.enum';
-import { IProduct } from '../iproduct';
+import { ProductCategory } from '../model/product-category.enum';
+import { IProduct } from '../model/iproduct';
 
 @Component({
   selector: 'app-product',

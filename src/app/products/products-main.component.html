@@ -1,4 +1,3 @@
 <app-product-list (select)="onSelect($event)"></app-product-list>
-<app-product  #productDetail (add)="onProductAdd($event)"></app-product>
 
-<!-- <app-product *ngIf="showProductDetatil"  #productDetail (add)="onProductAdd($event)"></app-product> --> <!-- don't work product selected first time  -->
+<app-product *ngIf="showProductDetatil" [product]= "selectedProduct" (add)="onProductAdd($event)"></app-product>

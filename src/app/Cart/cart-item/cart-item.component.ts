@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class CartItemComponent implements OnInit, AfterViewInit {
   @Input() cartItem: CartItem;
-  @ViewChild('inputCartItemQnt')
-  inputCartItemQnt: ElementRef;
+  // @ViewChild('inputCartItemQnt')
+  // inputCartItemQnt: ElementRef;
   ishovering: boolean;
   isSelected = false;
 
@@ -21,9 +21,9 @@ export class CartItemComponent implements OnInit, AfterViewInit {
 
       // this.element.nativeElement.querySelector('input').focus(); - don't work
 
-      setTimeout(function () {
-        this.inputCartItemQnt.nativeElement.focus();
-      }.bind(this), 1);
+      // setTimeout(function () {
+      //   this.inputCartItemQnt.nativeElement.focus();
+      // }.bind(this), 1);
     }
   }
 
@@ -35,15 +35,15 @@ export class CartItemComponent implements OnInit, AfterViewInit {
     this.ishovering = false;
   }
 
-  constructor(private element: ElementRef, private cartService: CartService) {
+  constructor(private cartService: CartService) {
 
   }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit(){
-    console.log(this.inputCartItemQnt);
+  ngAfterViewInit() {
+    // console.log(this.inputCartItemQnt);
 
   }
 
