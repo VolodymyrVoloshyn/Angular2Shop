@@ -1,6 +1,6 @@
 <span>
   <span>{{cartItem.product.name}}</span>
-  <input *ngIf="isSelected; else elseBlock" #inputCartItemQnt autofocus type="number" min="1" [(ngModel)]="cartItem.quantity" class="ciQnt" (blur)="editFinished()" >
+  <input *ngIf="isSelected; else elseBlock" type="number" min="1" [(ngModel)]="cartItem.quantity" class="ciQnt" (blur)="editFinished()" >
   <ng-template #elseBlock>
   <span [ngClass]="{'ciQntHover' : ishovering}">{{cartItem.quantity}}</span>
 </ng-template>

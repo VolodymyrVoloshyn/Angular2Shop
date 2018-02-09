@@ -1,23 +1,23 @@
 <div class="productComponentMainBlock">
-  <h3>{{ productName }}</h3>
+  <h3>{{ product.name }}</h3>
   <h3>{{ pName }}</h3>
-  <p>Category: {{ productCategory }}</p>
-  <p>Price: {{productPrice}}</p>
+  <p>Category: {{ product.category }}</p>
+  <p>Price: {{product.price}}</p>
   <h5>Details:</h5>
   <div>
-    {{ productDescription }}
+    {{ product.description }}
   </div>
-  <ng-template [ngIf]="ingredients">
+  <ng-template [ngIf]="product.ingredients">
     <h5>Ingredients:</h5>
     <ul>
-      <li *ngFor="let ingr of ingredients">
+      <li *ngFor="let ingr of product.ingredients">
         {{ingr}}
       </li>
     </ul>
   </ng-template>
-  <div [ngClass]="{'disabled' : !isAvailable}" >
+  <div [ngClass]="{'disabled' : !isAvailable}">
     Quantity:
-    <input type="number" value="1" #productQnt min=1 [disabled]="!isAvailable"/>
+    <input type="number" value="1" #productQnt min=1 [disabled]="!isAvailable" />
     <button type="button" (click)='onAdd()' [disabled]="!isAvailable">Buy</button>
   </div>
 </div>
