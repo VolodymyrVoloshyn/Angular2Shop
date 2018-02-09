@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './products/product';
-import { ProductCategory } from './products/product-category.enum';
-import { CartService } from './shopCart/cart.service';
-import { CartItem } from './shopCart/cart-item';
+import { CartService } from './cart/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +8,14 @@ import { CartItem } from './shopCart/cart-item';
 })
 export class AppComponent implements OnInit {
   title = 'Burger Shop';
-  selectedProduct: Product;
   quantity: number;
 
   constructor(private cartService: CartService) { }
 
-  onBuy(): void {
-    console.log('Buy ' + this.selectedProduct.name + '. Quantity: ' + this.quantity);
-
-    this.cartService.addProduct(this.selectedProduct, this.quantity ? this.quantity : 1);
-  }
-
   ngOnInit() {
-    this.selectedProduct = {
-      id: 101, name: 'Humburger', description: 'Humburger description', price: 1.2, category: ProductCategory.Burger, isAvailable: true,
-      ingredients: ['Hum', 'bread', 'ketchup']
-    };
   }
 
-  getCartItemsCount(): number {
-    return this.cartService.getProductsCount();
+  isCartVisible(): boolean {
+    return this.cartService.getProductsCount() > 0;
   }
 }

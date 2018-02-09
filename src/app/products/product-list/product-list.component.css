@@ -12,3 +12,7 @@
 .plItemName{
     font-weight: bold;
 }
+
+.plItemSelected{
+    background-color: aquamarine;
+}

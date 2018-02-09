@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Product } from './product';
-import { ProductCategory } from './product-category.enum';
+import { IProduct } from '../model/iproduct';
+import { ProductCategory } from '../model/product-category.enum';
 
 @Injectable()
 export class ProductService {
 
   constructor() { }
 
-  getProducts(): Product[] {
-    const p: Product[] = [
+  getProducts(): IProduct[] {
+    const p: IProduct[] = [
       {
         id: 101, name: 'Humburger', description: 'Humburger description', price: 1.2, category: ProductCategory.Burger, isAvailable: true,
         ingredients: ['Hum', 'bread', 'ketchup']
@@ -23,7 +23,7 @@ export class ProductService {
       },
       {
         id: 201, name: 'Cola', description: 'Cola 0.5', price: 0.1, category: ProductCategory.Drink,
-        isAvailable: true, ingredients: ['Crab', 'bread', 'ketchup']
+        isAvailable: true
       },
     ];
     return p;

@@ -1,0 +1,4 @@
+<app-cart-item-list *ngIf="getCartItemsCount() > 0"></app-cart-item-list>
+<ng-template [ngIf]="getTotal() > 0">
+  <span>Total: ${{getTotal()}}</span>
+</ng-template>

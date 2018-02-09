@@ -1,0 +1,8 @@
+<div>
+  <h3>Shop cart</h3>
+  <ol>
+    <li *ngFor="let item of cartItems" (click)= "onSelect(item)">
+      <app-cart-item [cartItem]= "item"></app-cart-item>
+    </li>
+  </ol>
+</div>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
-import { Product } from '../product';
-import { ProductCategory } from '../product-category.enum';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { IProduct } from '../model/iproduct';
+import { ProductCategory } from '../model/product-category.enum';
 
 @Component({
   selector: 'app-product-list',
@@ -9,12 +9,21 @@ import { ProductCategory } from '../product-category.enum';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[];
+  selectedProduct: IProduct;
+
+  @Output() select: EventEmitter<IProduct> = new EventEmitter();
+  products: IProduct[];
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.getProducts();
+  }
+
+  onSelect(product: IProduct): void {
+    this.selectedProduct = product;
+
+    this.select.emit(product);
   }
 
   private getProducts(): void {
