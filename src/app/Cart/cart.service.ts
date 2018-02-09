@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from '../products/iproduct';
+import { IProduct } from '../products/model/iproduct';
 import { CartItem } from './cart-item';
 
 @Injectable()
@@ -10,8 +10,8 @@ export class CartService {
 
   constructor() {
     this.cartItems = new Array<CartItem>();
-    this.itemsCount  = 0;
-    this.cartTotal  = 0;
+    this.itemsCount = 0;
+    this.cartTotal = 0;
   }
 
   addProduct(product: IProduct, quantity: number): void {
@@ -33,14 +33,14 @@ export class CartService {
     let index = this.cartItems.indexOf(cartItem);
 
     if (index > -1) {
-      this.cartItems.quantity = quantity;
+      cartItem.quantity = quantity;
 
       this.calculateCartData();
     }
   }
 
-  clearCart(): void{
-    
+  clearCart(): void {
+
   }
 
   getProducts(): Array<CartItem> {
@@ -55,14 +55,14 @@ export class CartService {
     return this.cartTotal;
   }
 
-  private calculateCartData(): void{
-let total = 0;  
+  private calculateCartData(): void {
+    let total = 0;
 
     for (let item of this.cartItems) {
       total += item.quantity * item.product.price;
     }
 
-    this.itemsCount  = this.cartItems.length;
-    this.cartTotal  = total;
+    this.itemsCount = this.cartItems.length;
+    this.cartTotal = total;
   }
 }

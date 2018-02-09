@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  getCartItemsCount(): number {
-    return this.cartService.getProductsCount();
+  isCartVisible(): boolean {
+    return this.cartService.getProductsCount() > 0;
   }
 }

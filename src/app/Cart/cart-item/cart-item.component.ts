@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener, ViewChild, ElementRef, HostBinding, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, HostListener, ViewChild, ElementRef, HostBinding } from '@angular/core';
 import { CartItem } from '../cart-item';
 import { CartService } from '../cart.service';
 import { FormsModule } from '@angular/forms';
@@ -8,10 +8,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css']
 })
-export class CartItemComponent implements OnInit, AfterViewInit {
+export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
-  @ViewChild('inputCartItemQnt')
-  inputCartItemQnt: ElementRef;
   ishovering: boolean;
   isSelected = false;
 
@@ -19,10 +17,8 @@ export class CartItemComponent implements OnInit, AfterViewInit {
     if (!this.isSelected) {
       this.isSelected = true;
 
-      // this.element.nativeElement.querySelector('input').focus(); - don't work
-
       setTimeout(function () {
-        this.inputCartItemQnt.nativeElement.focus();
+        this.element.nativeElement.querySelector('input').focus();
       }.bind(this), 1);
     }
   }
@@ -40,11 +36,6 @@ export class CartItemComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit(){
-    console.log(this.inputCartItemQnt);
-
   }
 
   deleteCartItem(): void {

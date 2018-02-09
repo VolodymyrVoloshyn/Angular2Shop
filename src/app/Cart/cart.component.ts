@@ -18,13 +18,6 @@ export class CartComponent implements OnInit {
   }
 
   getTotal(): number {
-    let total = 0;
-    for (let item of this.cartService.getProducts()) {
-
-      total += item.quantity * item.product.price;
-    }
-
-    return total; 
-    
+    return this.cartService.getTotal();
   }
 }
