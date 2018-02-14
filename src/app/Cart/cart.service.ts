@@ -40,7 +40,9 @@ export class CartService {
   }
 
   clearCart(): void {
+    this.cartItems.length = 0;
 
+    this.calculateCartData();
   }
 
   getProducts(): Array<CartItem> {
