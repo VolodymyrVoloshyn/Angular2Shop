@@ -9,4 +9,5 @@ export class Product implements IProduct {
     category: ProductCategory;
     isAvailable: boolean;
     ingredients?: string[];
+    lastUpdatedDate: Date;
 }

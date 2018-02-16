@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener, ViewChild, ElementRef, HostBinding, Output, EventEmitter } from '@angular/core';
-import { CartItem } from '../cart-item';
+import { CartItem } from '../model/cart-item';
 import { CartService } from '../cart.service';
 import { FormsModule } from '@angular/forms';
 

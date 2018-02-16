@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { CartItem } from '../cart-item';
+import { CartItem } from '../model/cart-item';
+import { SortOrder } from '../model/sort-order.enum';
+import { Enum2ArrayPipe } from '../pipes/enum2-array.pipe';
+
 
 @Component({
   selector: 'app-cart-item-list',
@@ -10,8 +13,16 @@ import { CartItem } from '../cart-item';
 export class CartItemListComponent implements OnInit {
   cartItems: Array<CartItem>;
   selectedCartItem: CartItem;
+  orderAsc = true;
+  orderBy: SortOrder;
 
-  constructor(private cartService: CartService) { }
+  get sortOrders() {
+    return SortOrder;
+  }
+
+  constructor(private cartService: CartService) {
+    this.orderBy = SortOrder.Name;
+  }
 
   ngOnInit() {
     this.cartItems = this.cartService.getProducts();
@@ -29,8 +40,11 @@ export class CartItemListComponent implements OnInit {
     this.cartService.updateProductItem($event.cartItem, $event.quantity);
   }
 
-  clearCart(): void {
-    this.cartService.clearCart();
-    // this.cartItems = this.cartService.getProducts();
+  changeOrder(event): void {
+    this.orderBy = event.target.value;
+  }
+
+  changeOrderDirection(): void {
+    this.orderAsc = !this.orderAsc;
   }
 }

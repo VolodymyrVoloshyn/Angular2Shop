@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CartService } from './cart.service';
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 
 @Component({
   selector: 'app-cart',
@@ -7,6 +9,14 @@ import { CartService } from './cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+
+  createdDate = new Observable<Date>(
+    (observer: Subscriber<Date>) => {
+      observer.next(this.cartService.getCreatedDate());
+
+      setInterval(() => observer.next(this.cartService.getCreatedDate()), 5000);
+    }
+  );
 
   constructor(private cartService: CartService) { }
 
@@ -21,8 +31,7 @@ export class CartComponent implements OnInit {
     return this.cartService.getTotal();
   }
 
-  // clearCart(): void {
-  //   this.cartService.clearCart();
-  //   this.cartItems = this.cartService.getProducts();
-  // }
+  clearCart(): void {
+    this.cartService.clearCart();
+  }
 }

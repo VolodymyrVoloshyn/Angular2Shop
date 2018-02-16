@@ -20,10 +20,7 @@ const constantsService = new ConstantsService({ app: 'Burger Shop', ver: 'ver 1.
     ProductsModule,
     CartModule
   ],
- // providers: [CartService],
-
   providers: [
-    CartService,
     LocalStorageService, ConfigOptionsService,
     { provide: ConstantsService, useValue: constantsService }],
   bootstrap: [AppComponent]

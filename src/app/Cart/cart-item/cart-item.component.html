@@ -5,6 +5,6 @@
   <ng-template #elseBlock>
     <span [ngClass]="{'ciQntHover' : ishovering}">{{cartItem.quantity}}</span>
   </ng-template>
-  <span>pcs x ${{cartItem.product.price}}</span>
+  <span>pcs x {{cartItem.product.price | currency : 'USD' : 'symbol' : '1.1-2'}}</span>
   <button type="button" (click)="deleteCartItem($event)">Delete</button>
 </span>

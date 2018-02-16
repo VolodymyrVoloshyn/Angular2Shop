@@ -1,4 +1,12 @@
-<app-cart-item-list *ngIf="getCartItemsCount() > 0"></app-cart-item-list>
-<ng-template [ngIf]="getTotal() > 0">
-  <span>Total: ${{getTotal()}}</span>
+<ng-template [ngIf]="getCartItemsCount() > 0">
+  <h3>Shop cart</h3>
+  <div>
+    <app-cart-item-list></app-cart-item-list>
+  </div>
+  <span>Total: {{getTotal() | currency : 'USD' : 'symbol' : '1.1-2'}}</span>
+  <br/>
+  <span> Cart created {{createdDate | async | timeDiffNow}} ago </span>
+  <br/>
+  <br/>
+  <button type="button" (click)='clearCart()' [disabled]="isEmpty">Clear Cart</button>
 </ng-template>

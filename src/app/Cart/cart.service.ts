@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../products/model/iproduct';
-import { CartItem } from './cart-item';
+import { CartItem } from './model/cart-item';
 
 @Injectable()
 export class CartService {
   private cartItems: Array<CartItem>;
   private itemsCount: number;
   private cartTotal: number;
+  private createdCartDate?: Date;
 
   constructor() {
     this.cartItems = new Array<CartItem>();
     this.itemsCount = 0;
     this.cartTotal = 0;
+    this.createdCartDate = null;
   }
 
   addProduct(product: IProduct, quantity: number): void {
+    if (this.cartItems.length === 0) {
+      this.createdCartDate = new Date();
+    }
+
     this.cartItems.push(new CartItem(product, quantity));
     this.calculateCartData();
   }
@@ -57,8 +63,16 @@ export class CartService {
     return this.cartTotal;
   }
 
+  getCreatedDate(): Date {
+    return new Date(this.createdCartDate);
+  }
+
   private calculateCartData(): void {
     let total = 0;
+
+    if (this.cartItems.length === 0) {
+      this.createdCartDate = null;
+    }
 
     for (let item of this.cartItems) {
       total += item.quantity * item.product.price;

@@ -8,4 +8,5 @@ export interface IProduct {
     category: ProductCategory;
     isAvailable: boolean;
     ingredients?: string[];
+    lastUpdatedDate: Date;
 }

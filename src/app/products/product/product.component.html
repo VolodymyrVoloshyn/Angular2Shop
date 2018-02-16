@@ -1,7 +1,8 @@
 <div class="productComponentMainBlock">
-  <h3>{{ product.name }}</h3>
-  <p>Category: {{ product.category }}</p>
-  <p>Price: {{product.price}}</p>
+  <h3>{{ product.name | uppercase}}</h3>
+  <h5>Updated: {{product.lastUpdatedDate | date : 'fullDate' }}</h5>
+  <p>Category: {{ product.category | uppercase }}</p>
+  <p>Price: {{product.price | currency : 'USD' : 'symbol' : '1.1-2'}}</p>
   <h5>Details:</h5>
   <div>
     {{ product.description }}
