@@ -4,6 +4,7 @@ import { ProductService } from './services/product.service';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductsMainComponent } from './products-main.component';
+import { MarkVisitedDirective } from './mark-visited.directive';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { ProductsMainComponent } from './products-main.component';
   declarations: [
     ProductComponent,
     ProductListComponent,
-    ProductsMainComponent],
+    ProductsMainComponent,
+    MarkVisitedDirective],
   providers: [ProductService],
   exports: [ProductsMainComponent]
 })

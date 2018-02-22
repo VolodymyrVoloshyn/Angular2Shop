@@ -1,8 +1,10 @@
 <span>
   <span>{{cartItem.product.name}}</span>
-  <input *ngIf="isSelected; else elseBlock" type="number" min="1" [(ngModel)]="cartItem.quantity" class="ciQnt" (blur)="editFinished()" >
+  <input *ngIf="isSelected; else elseBlock" type="number" min="1" [(ngModel)]="cartItem.quantity" class="ciQnt" (blur)="editFinished()"
+    (keyup.enter)="editFinished()">
   <ng-template #elseBlock>
-  <span [ngClass]="{'ciQntHover' : ishovering}">{{cartItem.quantity}}</span>
-</ng-template>
-  <span>pcs x ${{cartItem.product.price}}</span><button type="button" (click)="deleteCartItem()">Delete</button>
+    <span [ngClass]="{'ciQntHover' : ishovering}">{{cartItem.quantity}}</span>
+  </ng-template>
+  <span>pcs x ${{cartItem.product.price}}</span>
+  <button type="button" (click)="deleteCartItem($event)">Delete</button>
 </span>

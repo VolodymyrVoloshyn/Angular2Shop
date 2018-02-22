@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener, ViewChild, ElementRef, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostListener, ViewChild, ElementRef, HostBinding, Output, EventEmitter } from '@angular/core';
 import { CartItem } from '../cart-item';
 import { CartService } from '../cart.service';
 import { FormsModule } from '@angular/forms';
@@ -8,8 +8,21 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css']
 })
+
 export class CartItemComponent implements OnInit {
-  @Input() cartItem: CartItem;
+  private _cartItem: CartItem;
+  private _originalCartItem: CartItem;
+
+  @Input() get cartItem(): CartItem {
+    return this._cartItem;
+  }
+  set cartItem(cartItem: CartItem) {
+    this._originalCartItem = cartItem;
+    this._cartItem = { ...cartItem };
+  }
+
+  @Output() quantityUpdated = new EventEmitter();
+
   ishovering: boolean;
   isSelected = false;
 
@@ -38,11 +51,16 @@ export class CartItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteCartItem(): void {
-    this.cartService.removeProduct(this.cartItem);
+  deleteCartItem($event): void {
+    this.cartService.removeProduct(this._originalCartItem);
+    $event.stopPropagation();
   }
 
-    editFinished(): void {
-      this.isSelected = false;
+  editFinished(): void {
+    this.isSelected = false;
+
+    if (this._cartItem.quantity !== this._originalCartItem.quantity) {
+      this.quantityUpdated.emit({ quantity: this._cartItem.quantity, cartItem: this._originalCartItem });
     }
   }
+}

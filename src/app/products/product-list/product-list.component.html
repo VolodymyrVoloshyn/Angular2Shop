@@ -1,6 +1,6 @@
 <div class="plMB">
   <h2>Menu</h2>
-  <div class="plItem" *ngFor="let product of products" (click)= onSelect(product) [ngClass]="{'plItemSelected' : product== selectedProduct}">
+  <div class="plItem" *ngFor="let product of products" (click)= onSelect(product) [ngClass]="{'plItemSelected' : product== selectedProduct}" appMarkVisited= "yellow">
     <div class="plItemName" >{{product.name}}</div>
     <div>Price: {{product.price}}</div>
   </div>

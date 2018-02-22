@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   ],
   declarations: [CartItemListComponent, CartComponent,
     CartItemComponent],
-  providers: [CartService],
+  // providers: [CartService],
   exports: [CartComponent]
 })
 export class CartModule { }
