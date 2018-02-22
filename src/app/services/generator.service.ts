@@ -5,15 +5,19 @@ export const Random_String_N = new InjectionToken<GeneratorService>('RandomStrin
 
 export function RandomStringNFactory(length: number) {
   return function (): GeneratorService {
-    return new GeneratorService(length);
+    let s = new GeneratorService();
+    s.length= length;
+    return s;
   };
 }
 
 @Injectable()
 export class GeneratorService {
   private data: Array<any>;
+  
+  length: number = 5;
 
-  constructor(private length: number) {
+  constructor() {
     this.data = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('');
   }
 

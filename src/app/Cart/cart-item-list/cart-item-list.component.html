@@ -6,7 +6,7 @@
   <span (click)="changeOrderDirection()">{{orderAsc ? 'Asc' : 'Desc' }}</span>
 </div>
 <ol>
-  <li *ngFor="let item of cartItems | cartItemOrder : orderBy : orderAsc" (click)="onSelect(item)">
+  <li *ngFor="let item of cartItems$ | async | cartItemOrder : orderBy : orderAsc " (click)="onSelect(item)">
     <app-cart-item [cartItem]="item" (quantityUpdated)="onCartItemUpdated($event)"></app-cart-item>
   </li>
 </ol>

@@ -6,7 +6,7 @@ import { SortOrder } from '../model/sort-order.enum';
   name: 'cartItemOrder'
 })
 export class CartItemOrderPipe implements PipeTransform {
-  transform(value: CartItem[], orderBy: SortOrder, asc: Boolean): CartItem[] {
+    transform(value: CartItem[], orderBy: SortOrder, asc: Boolean): CartItem[] {
 
     switch (SortOrder[orderBy]) {
       case SortOrder.Name:

@@ -4,6 +4,7 @@ import { CartItem } from '../model/cart-item';
 import { SortOrder } from '../model/sort-order.enum';
 import { Enum2ArrayPipe } from '../pipes/enum2-array.pipe';
 
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-cart-item-list',
@@ -11,7 +12,7 @@ import { Enum2ArrayPipe } from '../pipes/enum2-array.pipe';
   styleUrls: ['./cart-item-list.component.css']
 })
 export class CartItemListComponent implements OnInit {
-  cartItems: Array<CartItem>;
+  cartItems$: Observable<Array<CartItem>>;
   selectedCartItem: CartItem;
   orderAsc = true;
   orderBy: SortOrder;
@@ -20,12 +21,12 @@ export class CartItemListComponent implements OnInit {
     return SortOrder;
   }
 
-  constructor(private cartService: CartService) {
+  constructor(public cartService: CartService) {
     this.orderBy = SortOrder.Name;
   }
 
   ngOnInit() {
-    this.cartItems = this.cartService.getProducts();
+    this.cartItems$ = this.cartService.getProducts();
   }
 
   get isEmpty(): boolean {

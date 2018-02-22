@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { IProduct } from '../products/model/iproduct';
 import { CartItem } from './model/cart-item';
 
+import { Observable } from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
 @Injectable()
 export class CartService {
   private cartItems: Array<CartItem>;
@@ -9,11 +12,15 @@ export class CartService {
   private cartTotal: number;
   private createdCartDate?: Date;
 
+  private _cartItems: BehaviorSubject<Array<CartItem>>;
+
   constructor() {
     this.cartItems = new Array<CartItem>();
     this.itemsCount = 0;
     this.cartTotal = 0;
     this.createdCartDate = null;
+
+    this._cartItems = <BehaviorSubject<Array<CartItem>>>new BehaviorSubject([]);
   }
 
   addProduct(product: IProduct, quantity: number): void {
@@ -51,8 +58,8 @@ export class CartService {
     this.calculateCartData();
   }
 
-  getProducts(): Array<CartItem> {
-    return this.cartItems;
+  getProducts(): Observable<Array<CartItem>> {
+    return this._cartItems.asObservable();
   }
 
   getProductsCount(): number {
@@ -80,5 +87,7 @@ export class CartService {
 
     this.itemsCount = this.cartItems.length;
     this.cartTotal = total;
+
+    this._cartItems.next([...this.cartItems]);
   }
 }
