@@ -10,17 +10,17 @@ import { CartService } from '../cart/cart.service';
 
 export class ProductsMainComponent implements OnInit {
   showProductDetatil: Boolean;
-  selectedProduct: IProduct;
+//  selectedProduct: IProduct;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
   }
 
-  onSelect(product: IProduct): void {
-    this.showProductDetatil = true;
-    this.selectedProduct = product;
-  }
+  // onSelect(product: IProduct): void {
+  //   this.showProductDetatil = true;
+  //   this.selectedProduct = product;
+  // }
 
   onProductAdd($event) {
     this.cartService.addProduct($event.product, $event.quantity);

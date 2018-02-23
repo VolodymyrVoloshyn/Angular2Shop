@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { IProduct } from '../model/iproduct';
 import { ProductCategory } from '../model/product-category.enum';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product-list',
@@ -9,24 +11,24 @@ import { ProductCategory } from '../model/product-category.enum';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  selectedProduct: IProduct;
+//  selectedProduct: IProduct;
 
-  @Output() select: EventEmitter<IProduct> = new EventEmitter();
-  products: IProduct[];
+  products$: Observable<IProduct[]>;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getProducts();
+    this.products$ = this.productService.getProducts();
   }
 
-  onSelect(product: IProduct): void {
-    this.selectedProduct = product;
+  // onSelect(product: IProduct): void {
+  //   this.selectedProduct = product;
 
-    this.select.emit(product);
-  }
-
-  private getProducts(): void {
-    this.products = this.productService.getProducts();
-  }
+  //   var link= ['product', product.id];
+  //   this.router.navigate(link, {relativeTo: this.route});
+  //   //this.router.navigate([{outlets: {productDetail: ['product', product.id]}}]);
+  // }
 }

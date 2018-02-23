@@ -1,18 +1,27 @@
-.plMB{
-    margin-right: 50px;
-    display: inline-block;
-    vertical-align: top;
-
+.plMB {
+  margin-right: 50px;
+  display: inline-block;
+  vertical-align: top;
 }
 
-.plItem{
-    margin-bottom: 20px;
+.plItem {
+  margin-bottom: 20px;
 }
 
-.plItemName{
-    font-weight: bold;
+.plItemName {
+  font-weight: bold;
 }
 
-.plItemSelected{
-    background-color: aquamarine !important;
+.menuList {
+  padding-left: 0px;
+  list-style: none;
+  width: 100px;
+}
+
+.menuList li {
+  border: 2px transparent;
+}
+
+.menuList li.plItemSelected {
+  border: 2px red dotted;
 }

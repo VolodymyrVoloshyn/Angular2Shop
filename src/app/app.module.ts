@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
@@ -8,21 +9,28 @@ import { LocalStorageService } from './services/local-storage.service';
 import { ConstObject } from './services/model/const-object';
 import { ConstantsService } from './services/constants.service';
 import { CartService } from './cart/cart.service';
+import { AppRoutingModule, appRouterComponents } from './app.routing.module';
 
 const constantsService = new ConstantsService({ app: 'Burger Shop', ver: 'ver 1.0' });
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    appRouterComponents
   ],
   imports: [
     BrowserModule,
     ProductsModule,
-    CartModule
+    CartModule,
+    AppRoutingModule
   ],
   providers: [
     LocalStorageService, ConfigOptionsService,
     { provide: ConstantsService, useValue: constantsService }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(router: Router) {
+    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+  }
+}

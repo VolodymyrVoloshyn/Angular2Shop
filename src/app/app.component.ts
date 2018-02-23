@@ -1,5 +1,4 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
-import { CartService } from './cart/cart.service';
 import { ConfigOptionsService } from './services/config-options.service';
 import { ConstantsService } from './services/constants.service';
 import { Random_String_N, RandomStringNFactory, GeneratorService } from './services/generator.service';
@@ -18,7 +17,6 @@ export class AppComponent implements OnInit {
   quantity: number;
 
   constructor(
-    private cartService: CartService,
     // registered on app.module
     @Optional() private configOptionService: ConfigOptionsService,
     // registered on app.module with useValue
@@ -54,7 +52,11 @@ export class AppComponent implements OnInit {
     );
   }
 
-  isCartVisible(): boolean {
-    return this.cartService.getProductsCount() > 0;
+  onActivate($event) {
+    console.log('Activated Component', $event);
+  }
+
+  onDeactivate($event) {
+    console.log('Deactivated Component', $event);
   }
 }

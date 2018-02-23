@@ -1,7 +1,15 @@
 <div class="plMB">
   <h2>Menu</h2>
-  <div class="plItem" *ngFor="let product of products" (click)= onSelect(product) [ngClass]="{'plItemSelected' : product== selectedProduct}" appMarkVisited= "yellow">
+  <ul class="menuList">
+    <li *ngFor="let product of products$ | async" [routerLink]="['/products', 'product', product.id]" routerLinkActive="plItemSelected">
+      <div class="plItem" appMarkVisited= "yellow">
+        <div class="plItemName" >{{product.name}}</div>
+        <div>Price: {{product.price | currency : 'USD' : 'symbol' : '1.1-2'}}</div>
+      </div>
+    </li>
+  </ul>
+  <!-- <div class="plItem" *ngFor="let product of products" (click)= onSelect(product) [ngClass]="{'plItemSelected' : product== selectedProduct}" appMarkVisited= "yellow">
     <div class="plItemName" >{{product.name}}</div>
     <div>Price: {{product.price | currency : 'USD' : 'symbol' : '1.1-2'}}</div>
-  </div>
+  </div> -->
 </div>

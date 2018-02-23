@@ -1,3 +1,7 @@
-<app-product-list (select)="onSelect($event)"></app-product-list>
+<!-- <router-outlet name="productDetail"></router-outlet> -->
 
-<app-product *ngIf="showProductDetatil" [product]= "selectedProduct" (add)="onProductAdd($event)"></app-product>
+<!-- <app-product-list (select)="onSelect($event)"></app-product-list> -->
+<app-product-list></app-product-list>
+<router-outlet></router-outlet>
+
+<!-- <app-product *ngIf="showProductDetatil" [product]="selectedProduct" (add)="onProductAdd($event)"></app-product> -->

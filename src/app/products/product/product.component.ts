@@ -1,30 +1,35 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ProductCategory } from '../model/product-category.enum';
 import { IProduct } from '../model/iproduct';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
-  private _product: IProduct;
-  @Input() get product(): IProduct {
-    return this._product;
-  }
-  set product(product: IProduct) {
-    this._product = product;
+export class ProductComponent implements OnInit, OnDestroy {
+  private sub: Subscription;
 
-    this.productQnt.nativeElement.value = 1;
-  }
+  product: IProduct;
 
   @Output() add = new EventEmitter();
 
   @ViewChild('productQnt')
   productQnt: ElementRef;
 
+  constructor(
+    private route: ActivatedRoute
+  ) { }
+
   ngOnInit() {
+    this.sub = this.route.data.subscribe(data => {
+      this.product = { ...data.product };
+    });
   }
+
+  ngOnDestroy() { }
 
   get isAvailable(): boolean {
     return this.product ? this.product.isAvailable : false;
