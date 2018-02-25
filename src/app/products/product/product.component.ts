@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { ProductCategory } from '../model/product-category.enum';
-import { IProduct } from '../model/iproduct';
+import { Component, OnInit, Input, EventEmitter, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
+
+import { CartService } from '../../cart/cart.service';
+import { IProduct } from '../model/iproduct';
+import { ProductCategory } from '../model/product-category.enum';
 
 @Component({
   selector: 'app-product',
@@ -14,12 +16,11 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   product: IProduct;
 
-  @Output() add = new EventEmitter();
-
   @ViewChild('productQnt')
   productQnt: ElementRef;
 
   constructor(
+    private cartService: CartService,    
     private route: ActivatedRoute
   ) { }
 
@@ -47,6 +48,6 @@ export class ProductComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.add.emit({ quantity: this.productQnt.nativeElement.value, product: this.product });
+    this.cartService.addProduct(this.product, this.productQnt.nativeElement.value);
   }
 }

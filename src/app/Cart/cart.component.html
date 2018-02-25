@@ -1,5 +1,6 @@
-<ng-template [ngIf]="getCartItemsCount() > 0">
-  <h3>Shop cart</h3>
+<h3>Shop cart</h3>
+<div *ngIf="cartItemCount > 0; then thenBlock; else elseBlock"></div>
+<ng-template #thenBlock>
   <div>
     <app-cart-item-list></app-cart-item-list>
   </div>
@@ -9,4 +10,7 @@
   <br/>
   <br/>
   <button type="button" (click)='clearCart()' [disabled]="isEmpty">Clear Cart</button>
+</ng-template>
+<ng-template #elseBlock>
+  <div>Cart is empty</div>
 </ng-template>

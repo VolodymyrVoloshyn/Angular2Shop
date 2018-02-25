@@ -8,19 +8,19 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class CartService {
   private cartItems: Array<CartItem>;
-  private itemsCount: number;
   private cartTotal: number;
   private createdCartDate?: Date;
 
   private _cartItems: BehaviorSubject<Array<CartItem>>;
+  private itemsCount: BehaviorSubject<number>;
 
   constructor() {
     this.cartItems = new Array<CartItem>();
-    this.itemsCount = 0;
     this.cartTotal = 0;
     this.createdCartDate = null;
 
     this._cartItems = <BehaviorSubject<Array<CartItem>>>new BehaviorSubject([]);
+    this.itemsCount = <BehaviorSubject<number>>new BehaviorSubject(0);
   }
 
   addProduct(product: IProduct, quantity: number): void {
@@ -58,12 +58,12 @@ export class CartService {
     this.calculateCartData();
   }
 
-  getProducts(): Observable<Array<CartItem>> {
+  getCartItems(): Observable<Array<CartItem>> {
     return this._cartItems.asObservable();
   }
 
-  getProductsCount(): number {
-    return this.itemsCount;
+  getCartItemCount(): Observable<number> {
+    return this.itemsCount.asObservable();
   }
 
   getTotal(): number {
@@ -85,7 +85,7 @@ export class CartService {
       total += item.quantity * item.product.price;
     }
 
-    this.itemsCount = this.cartItems.length;
+    this.itemsCount.next(this.cartItems.length);
     this.cartTotal = total;
 
     this._cartItems.next([...this.cartItems]);

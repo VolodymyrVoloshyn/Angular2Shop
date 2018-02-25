@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { TimeDiffNowPipe } from './pipes/time-diff-now.pipe';
 import { Enum2ArrayPipe } from './pipes/enum2-array.pipe';
 import { CartItemOrderPipe } from './pipes/cart-item-order.pipe';
+import { CartShortViewComponent } from './cart-short-view/cart-short-view.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,10 @@ import { CartItemOrderPipe } from './pipes/cart-item-order.pipe';
     CartItemComponent,
     TimeDiffNowPipe,
     Enum2ArrayPipe,
-    CartItemOrderPipe],
+    CartItemOrderPipe,
+    CartShortViewComponent],
   providers: [CartService],
-  exports: [CartComponent]
+  exports: [CartComponent,
+    CartShortViewComponent]
 })
 export class CartModule { }

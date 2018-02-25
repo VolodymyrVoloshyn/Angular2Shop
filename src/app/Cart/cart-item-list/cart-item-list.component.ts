@@ -26,11 +26,12 @@ export class CartItemListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cartItems$ = this.cartService.getProducts();
+    debugger;
+    this.cartItems$ = this.cartService.getCartItems();
   }
 
   get isEmpty(): boolean {
-    return this.cartService.getProductsCount() === 0;
+    return true; // this.cartService.getProductsCount() === 0;
   }
 
   onSelect(item: CartItem): void {

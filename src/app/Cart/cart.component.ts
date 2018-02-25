@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CartService } from './cart.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart',
@@ -9,6 +10,7 @@ import { Subscriber } from 'rxjs/Subscriber';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  cartItemCount: number = 0;
 
   createdDate = new Observable<Date>(
     (observer: Subscriber<Date>) => {
@@ -21,17 +23,21 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-  }
-
-  getCartItemsCount(): number {
-    return this.cartService.getProductsCount();
+    this.cartService.getCartItemCount().subscribe(c=> this.cartItemCount= c);
+    //this.cartItemCount=  this.cartService.getCartItemCount().pipe();
+    //   map((c:number)=> {
+    //   debugger;
+    //   this.cartItemCount= c;
+    // }
+    //  )
+    // );
   }
 
   getTotal(): number {
-    return this.cartService.getTotal();
-  }
+    return  this.cartService.getTotal();
+}
 
-  clearCart(): void {
+art(): void {
     this.cartService.clearCart();
   }
 }
